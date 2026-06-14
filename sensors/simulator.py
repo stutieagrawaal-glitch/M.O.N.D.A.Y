@@ -1,5 +1,4 @@
 # Simulates hardware sensor readings for testing Monday on a desktop
-# On a real Raspberry Pi, replace these methods with actual GPIO reads
 from datetime import datetime, timedelta
 
 from core.states import SensorEvent, SensorType
