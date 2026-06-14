@@ -20,7 +20,7 @@ class NotificationSystem:
         print(f"\n[PHONE NOTIFICATION] [{priority.upper()}] {title}")
         print(f"   {message}\n")
 
-        # Real Pi implementation would do something like:
+        # Real hardware implementation would do something like:
         # requests.post("https://api.telegram.org/bot<TOKEN>/sendMessage",
         #               json={"chat_id": CHAT_ID, "text": f"{title}\n{message}"})
 
