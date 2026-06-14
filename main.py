@@ -46,7 +46,7 @@ def run_simulation():
     # SCENARIO 1: Morning routine, kitchen motion triggers
     #             coffee machine pre activation
     # --------------------------------------------------------
-    print("\n=== SCENARIO 1: MORNING ROUTINE (06:30) ===")
+    print("\nSCENARIO 1: MORNING ROUTINE (06:30)")
     simulator.simulated_time = datetime.now().replace(hour=6, minute=30, second=0, microsecond=0)
  
     monday.process_event(
@@ -57,7 +57,7 @@ def run_simulation():
     # --------------------------------------------------------
     # SCENARIO 2: AC pre activation before user arrives home
     # --------------------------------------------------------
-    print("\n=== SCENARIO 2: AC PRE ACTIVATION (17:50) ===")
+    print("\nSCENARIO 2: AC PRE ACTIVATION (17:50)")
     simulator.simulated_time = simulator.simulated_time.replace(hour=17, minute=50)
  
     monday.process_event(
@@ -67,7 +67,7 @@ def run_simulation():
     # --------------------------------------------------------
     # SCENARIO 3: User absent 11 minutes, AC auto off
     # --------------------------------------------------------
-    print("\n=== SCENARIO 3: USER ABSENT, AC AUTO OFF ===")
+    print("\nSCENARIO 3: USER ABSENT, AC AUTO OFF")
     simulator.simulated_time = simulator.simulated_time.replace(hour=18, minute=0)
  
     monday.process_event(simulator.generate_presence_event(wifi=True, bluetooth=True))
@@ -83,7 +83,7 @@ def run_simulation():
     # --------------------------------------------------------
     # SCENARIO 4: Night motion at door, far away, ignored
     # --------------------------------------------------------
-    print("\n=== SCENARIO 4: NIGHT MOTION FAR AWAY (01:00), IGNORED ===")
+    print("\nSCENARIO 4: NIGHT MOTION FAR AWAY (01:00), IGNORED")
     simulator.simulated_time = simulator.simulated_time.replace(hour=1, minute=0)
  
     monday.process_event(
@@ -93,7 +93,7 @@ def run_simulation():
     # --------------------------------------------------------
     # SCENARIO 5: Night motion at door, close range, triggers
     # --------------------------------------------------------
-    print("\n=== SCENARIO 5: NIGHT MOTION CLOSE RANGE (01:01), TRIGGERS ===")
+    print("\nSCENARIO 5: NIGHT MOTION CLOSE RANGE (01:01), TRIGGERS")
     simulator.advance_time(minutes=1)
  
     monday.process_event(
@@ -103,7 +103,7 @@ def run_simulation():
     # --------------------------------------------------------
     # SCENARIO 6: Gas leak emergency
     # --------------------------------------------------------
-    print("\n=== SCENARIO 6: GAS LEAK EMERGENCY ===")
+    print("\nSCENARIO 6: GAS LEAK EMERGENCY")
     monday.process_event(
         simulator.generate_gas_event(location="kitchen", gas_level=0.9)
     )
@@ -111,7 +111,7 @@ def run_simulation():
     # --------------------------------------------------------
     # SCENARIO 7: Power anomaly on coffee machine
     # --------------------------------------------------------
-    print("\n=== SCENARIO 7: POWER ANOMALY DETECTION ===")
+    print("\nSCENARIO 7: POWER ANOMALY DETECTION")
     monday.state = monday.state.__class__.ACTIVE
     monday.emergency.clear_emergency()
  
@@ -122,18 +122,62 @@ def run_simulation():
     # --------------------------------------------------------
     # SCENARIO 8: Appliance efficiency recommendation
     # --------------------------------------------------------
-    print("\n=== SCENARIO 8: APPLIANCE RECOMMENDATION CHECK ===")
+    print("\nSCENARIO 8: APPLIANCE RECOMMENDATION CHECK")
     monday.run_periodic_checks(simulator.simulated_time)
  
     # --------------------------------------------------------
     # FINAL STATUS REPORT
     # --------------------------------------------------------
-    print("\n=== FINAL STATUS REPORT ===")
+    print("\nFINAL STATUS REPORT")
     status = monday.get_status_report()
     print(json.dumps(status, indent=2, default=str))
     print("\nSimulation complete.")
  
  
 if __name__ == "__main__":
-    run_simulation()
- 
+
+    import threading
+    import tkinter as tk
+
+    from gui.control_panel import MondayControlPanel
+
+    monday = Monday()
+
+    seed_historical_data(monday)
+
+    root = tk.Tk()
+
+    app = MondayControlPanel(
+        root=root,
+        monday=monday
+    )
+
+    def simulation_loop():
+
+        simulator = SensorSimulator()
+
+        while True:
+
+            monday.process_event(
+                simulator.generate_motion_event(
+                    location="kitchen",
+                    distance=1.0,
+                    intensity=0.8
+                )
+            )
+
+            monday.run_periodic_checks(
+                simulator.simulated_time
+            )
+
+            simulator.advance_time(minutes=5)
+
+            import time
+            time.sleep(5)
+
+    threading.Thread(
+        target=simulation_loop,
+        daemon=True
+    ).start()
+
+    root.mainloop()

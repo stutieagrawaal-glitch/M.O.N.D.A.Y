@@ -6,15 +6,17 @@ from core.monday import Monday
 
 class MondayControlPanel:
 
-    def __init__(self, root):
+    def __init__(self, root, monday):
+
         self.root = root
         self.root.title("MONDAY Control Center")
-        self.root.geometry("1000x700")
 
-        self.monday = Monday()
+        self.monday = monday
         self.simulator = SensorSimulator()
 
         self.build_ui()
+
+        self.auto_refresh()
 
     def build_ui(self):
 
@@ -132,8 +134,13 @@ class MondayControlPanel:
 
         self.monday.process_event(event)
         self.refresh()
+    
+    def auto_refresh(self):
 
+        self.refresh()
 
-root = tk.Tk()
-app = MondayControlPanel(root)
-root.mainloop()
+        self.root.after(
+            500,
+            self.auto_refresh
+        )
+print("Control panel loaded successfully.")
