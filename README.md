@@ -2,11 +2,11 @@
 
 > A neuromorphic edge computing platform for efficient multi-sensor data processing with ultra-low power consumption
 
-## 🎯 Project Vision
+##  Project Vision
 
 M.O.N.D.A.Y is a sophisticated edge device platform designed to process multi-sensor environmental data (temperature, humidity, motion, and air quality) locally with **microwatt-level power consumption**. The system intelligently activates deeper processing only when relevant events are detected, mimicking neuromorphic computing principles for optimal energy efficiency.
 
-## 🌟 Key Features
+##  Key Features
 
 ### 1. **Ultra-Low Power Consumption**
 - Designed for microwatt-level operation
@@ -62,7 +62,7 @@ M.O.N.D.A.Y is a sophisticated edge device platform designed to process multi-se
 └─────────────────────────────────────────────────┘
 ```
 
-## 🔧 Core Components
+##  Core Components
 
 ### Sensor Module
 - Interfaces with multiple sensor types
@@ -84,7 +84,7 @@ M.O.N.D.A.Y is a sophisticated edge device platform designed to process multi-se
 - Selective component activation
 - Energy accounting and monitoring
 
-## 📊 Use Cases
+##  Use Cases
 
 | Use Case | Description | Benefit |
 |----------|-------------|---------|
@@ -94,7 +94,7 @@ M.O.N.D.A.Y is a sophisticated edge device platform designed to process multi-se
 | **Healthcare Monitoring** | Wearable environmental sensors for health applications | Extended battery life in portable devices |
 | **Smart Homes** | Always-on environmental sensing for automation triggers | Responsive automation without cloud dependency |
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Python 3.8+
@@ -134,7 +134,7 @@ processor = NeuromorphicProcessor(power_budget=100)  # microWatts
 device.run(sensors, processor)
 ```
 
-## 📈 Performance Characteristics
+##  Performance Characteristics
 
 - **Power Consumption**: < 100 µW (idle state)
 - **Response Latency**: < 50ms (event detection)
@@ -142,7 +142,7 @@ device.run(sensors, processor)
 - **Memory Footprint**: Optimized for embedded systems
 - **Battery Life**: Months to years depending on event frequency
 
-## 🧠 Neuromorphic Computing Approach
+##  Neuromorphic Computing Approach
 
 This project leverages principles from biological neural systems:
 
@@ -152,7 +152,7 @@ This project leverages principles from biological neural systems:
 4. **Adaptation**: Network weights adapt to environmental patterns
 5. **Low Latency**: Direct parallel processing without sequential overhead
 
-## 🔍 Technical Specifications
+##  Technical Specifications
 
 - **Sensor Data Types**: Analog and Digital
 - **Processing Frequency**: Adaptive (10Hz - 1kHz based on events)
@@ -161,14 +161,14 @@ This project leverages principles from biological neural systems:
 - **Operating Temperature**: -10°C to +50°C
 - **Supply Voltage**: 1.8V - 5V (adaptable)
 
-## 📝 Documentation
+##  Documentation
 
 - [Sensor Integration Guide](docs/sensor_integration.md) - How to add new sensors
 - [Neuromorphic Architecture](docs/neuromorphic_architecture.md) - Deep dive into SNN implementation
 - [Power Optimization](docs/power_optimization.md) - Techniques for minimizing power consumption
 - [API Reference](docs/api_reference.md) - Complete API documentation
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -178,39 +178,35 @@ Contributions are welcome! Please follow these guidelines:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📜 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙋 Support & Discussion
+##  Support & Discussion
 
 - **Issues**: Report bugs and request features via [GitHub Issues](https://github.com/Astroid-Destroyer-dev/M.O.N.D.A.Y/issues)
 - **Discussions**: Join community discussions for ideas and questions
 - **Documentation**: Check the `docs/` folder for detailed guides
-
-## 🔗 Related Resources
+##  Related Resources
 
 - [Neuromorphic Computing Research](https://www.ibm.com/research/neuromorphic-computing/)
 - [Edge Computing Best Practices](https://www.arm.com/products/silicon-ip/system-ip/npu)
 - [IoT Power Optimization Techniques](https://www.iot-xperts.com/)
 
-## 🎓 Research & References
+##  Research & References
 
 This project incorporates concepts from:
 - Spiking Neural Networks (SNNs)
 - Event-Driven Architectures
 - Low-Power Embedded Systems Design
 - Sensor Fusion Algorithms
-- Energy-Efficient Machine Learning
+- Energy-Efficient Machine Learning  
 
-## 📊 Project Status
+##  Project Status
 
-- ✅ Core architecture defined
-- 🔄 Sensor integration in progress
-- 🔄 Neuromorphic processor implementation
-- ⏳ Power optimization phase
-- ⏳ Real-world deployment testing
+-  Core architecture defined
+-  Sensor integration in progress
+-  Neuromorphic processor implementation
+-  Power optimization phase
+-  Real-world deployment testing
 
----
-
-**M.O.N.D.A.Y** - Making edge computing intelligent, efficient, and accessible. 🌱
